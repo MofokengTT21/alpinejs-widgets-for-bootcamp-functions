@@ -25,3 +25,33 @@ function airtimeCalculator() {
     },
   };
 }
+//Word game
+function wordPuzzleHelper() {
+  return {
+    sentence: "",
+    longestWord: "",
+    shortestWord: "",
+    totalLength: 0,
+
+    findLongestWord() {
+      const words = this.sentence.split(/\s+/);
+      this.longestWord = words.reduce(
+        (longest, word) => (word.length > longest.length ? word : longest),
+        ""
+      );
+    },
+
+    findShortestWord() {
+      const words = this.sentence.split(/\s+/);
+      this.shortestWord = words.reduce(
+        (shortest, word) => (word.length < shortest.length ? word : shortest),
+        words[0] || ""
+      );
+    },
+
+    calculateWordLengths() {
+      const words = this.sentence.split(/\s+/);
+      this.totalLength = words.reduce((sum, word) => sum + word.length, 0);
+    },
+  };
+}
