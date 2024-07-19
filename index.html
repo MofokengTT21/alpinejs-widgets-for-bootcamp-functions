@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="script.js"></script>
 </head>
+
 <body>
 
-<!-- Greet function -->
+    <!-- Greet function -->
     <div x-data="{ neighbor: '', message: '', greet() { this.message = 'Hello, ' + this.neighbor } }">
         <input x-model="neighbor" type="text" placeholder="Enter neighbor's name">
         <button @click="greet()">Greet</button>
         <p x-text="message"></p>
     </div>
-<!-- Transport fee function -->
+    <!-- Transport fee function -->
     <div x-data="{ time: '', totalFee: '', calculateFee() {
         switch(this.time) {
             case 'morning':
@@ -30,22 +33,34 @@
                 this.totalFee = '';
         }
     }}">
-    <div>
-        <label>
-            <input type="radio" name="time" value="morning" x-model="time">
-            Morning
-        </label>
-        <label>
-            <input type="radio" name="time" value="afternoon" x-model="time">
-            Afternoon
-        </label>
-        <label>
-            <input type="radio" name="time" value="nightshift" x-model="time">
-            Nightshift
-        </label>
+        <div>
+            <label>
+                <input type="radio" name="time" value="morning" x-model="time">
+                Morning
+            </label>
+            <label>
+                <input type="radio" name="time" value="afternoon" x-model="time">
+                Afternoon
+            </label>
+            <label>
+                <input type="radio" name="time" value="nightshift" x-model="time">
+                Nightshift
+            </label>
+        </div>
+        <button @click="calculateFee()">Calculate Fee</button>
+        <input type="text" id="totalFee" x-model="totalFee" readonly>
     </div>
-    <button @click="calculateFee()">Calculate Fee</button>
-    <input type="text" id="totalFee" x-model="totalFee" readonly>
-</div>
+    
+    <!-- Total Phone Bill Function -->
+    <div x-data="airtimeCalculator()">
+        <textarea x-model="usageString" placeholder="Enter projected usage (e.g., call,call,data,sms)"></textarea>
+        <input x-model.number="availableAirtime" type="number" placeholder="Enter available airtime" />
+        <button @click="calculateRemainingAirtime()">Calculate Remaining Airtime</button>
+        <p x-text="remainingAirtime"></p>
+    </div>
+
+
+
 </body>
+
 </html>
