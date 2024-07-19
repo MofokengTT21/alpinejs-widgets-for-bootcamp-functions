@@ -6,84 +6,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Word Puzzle Helper</title>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
+    <div class="container">
+        <h1>AplineJs Widgets for Bootcamp Functions</h1>
 
-    <h1>Word Puzzle Helper</h1>
-
-    <!-- Greet Function -->
-    <section>
-        <h2>Greet Neighbor</h2>
-        <div x-data="{ neighbor: '', message: '', greet() { this.message = 'Hello, ' + this.neighbor } }">
-            <input x-model="neighbor" type="text" placeholder="Enter neighbor's name">
-            <button @click="greet()">Greet</button>
-            <p x-text="message"></p>
-        </div>
-    </section>
-
-    <!-- Transport Fee Function -->
-    <section>
-        <h2>Calculate Transport Fee</h2>
-        <div x-data="{ time: '', totalFee: '', calculateFee() {
-            switch(this.time) {
-                case 'morning':
-                    this.totalFee = 'R20';
-                    break;
-                case 'afternoon':
-                    this.totalFee = 'R10';
-                    break;
-                case 'nightshift':
-                    this.totalFee = 'Free';
-                    break;
-                default:
-                    this.totalFee = '';
-            }
-        }}">
-            <div>
-                <label>
-                    <input type="radio" name="time" value="morning" x-model="time">
-                    Morning
-                </label>
-                <label>
-                    <input type="radio" name="time" value="afternoon" x-model="time">
-                    Afternoon
-                </label>
-                <label>
-                    <input type="radio" name="time" value="nightshift" x-model="time">
-                    Nightshift
-                </label>
+        <!-- Greet Function -->
+        <section class="section">
+            <h2>Greet Neighbor</h2>
+            <div x-data="{ neighbor: '', message: '', greet() { this.message = 'Hello, ' + this.neighbor } }"
+                class="box">
+                <input x-model="neighbor" type="text" placeholder="Enter neighbor's name" class="input">
+                <button @click="greet()" class="button">Greet</button>
+                <p x-text="message" class="result"></p>
             </div>
-            <button @click="calculateFee()">Calculate Fee</button>
-            <input type="text" id="totalFee" x-model="totalFee" readonly>
-        </div>
-    </section>
+        </section>
 
-    <!-- Total Phone Bill Function -->
-    <section>
-        <h2>Total Phone Bill Calculator</h2>
-        <div x-data="airtimeCalculator()">
-            <textarea x-model="usageString" placeholder="Enter projected usage (e.g., call,call,data,sms)"></textarea><br>
-            <input x-model.number="availableAirtime" type="number" placeholder="Enter available airtime" />
-            <button @click="calculateRemainingAirtime()">Calculate Remaining Airtime</button>
-            <p x-text="remainingAirtime"></p>
-        </div>
-    </section>
+        <!-- Transport Fee Function -->
+        <section class="section">
+            <h2>Calculate Transport Fee</h2>
+            <div x-data="{ time: '', totalFee: '', calculateFee() {
+                switch(this.time) {
+                    case 'morning':
+                        this.totalFee = 'R20';
+                        break;
+                    case 'afternoon':
+                        this.totalFee = 'R10';
+                        break;
+                    case 'nightshift':
+                        this.totalFee = 'Free';
+                        break;
+                    default:
+                        this.totalFee = '';
+                }
+            }}" class="box">
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="time" value="morning" x-model="time">
+                        Morning
+                    </label>
+                    <label>
+                        <input type="radio" name="time" value="afternoon" x-model="time">
+                        Afternoon
+                    </label>
+                    <label>
+                        <input type="radio" name="time" value="nightshift" x-model="time">
+                        Nightshift
+                    </label>
+                </div>
+                <button @click="calculateFee()" class="button">Calculate Fee</button>
+                <input type="text" id="totalFee" x-model="totalFee" readonly class="input">
+            </div>
+        </section>
 
-    <!-- Word Game -->
-    <section>
-        <h2>Word Puzzle Helper</h2>
-        <div x-data="wordPuzzleHelper()">
-            <textarea x-model="sentence" placeholder="Enter your sentence here"></textarea><br>
-            <button @click="findLongestWord()">Find Longest Word</button>
-            <button @click="findShortestWord()">Find Shortest Word</button>
-            <button @click="calculateWordLengths()">Calculate Total Length</button>
-            <p x-text="'Longest Word: ' + longestWord"></p>
-            <p x-text="'Shortest Word: ' + shortestWord"></p>
-            <p x-text="'Total Length of Words: ' + totalLength"></p>
-        </div>
-    </section>
+        <!-- Total Phone Bill Function -->
+        <section class="section">
+            <h2>Total Phone Bill Calculator</h2>
+            <div x-data="airtimeCalculator()" class="box">
+                <textarea x-model="usageString" placeholder="Enter projected usage (e.g., call,call,data,sms)"
+                    class="textarea"></textarea><br>
+                <input x-model.number="availableAirtime" type="number" placeholder="Enter available airtime"
+                    class="input" />
+                <button @click="calculateRemainingAirtime()" class="button">Calculate Remaining Airtime</button>
+                <p x-text="remainingAirtime" class="result"></p>
+            </div>
+        </section>
 
+        <!-- Word Game -->
+        <section class="section">
+            <h2>Word Puzzle Helper</h2>
+            <div x-data="wordPuzzleHelper()" class="box">
+                <textarea x-model="sentence" placeholder="Enter your sentence here" class="textarea"></textarea><br>
+                <button @click="findLongestWord()" class="button">Find Longest Word</button>
+                <button @click="findShortestWord()" class="button">Find Shortest Word</button>
+                <button @click="calculateWordLengths()" class="button">Calculate Total Length</button>
+                <p x-text="'Longest Word: ' + longestWord" class="result"></p>
+                <p x-text="'Shortest Word: ' + shortestWord" class="result"></p>
+                <p x-text="'Total Length of Words: ' + totalLength" class="result"></p>
+            </div>
+        </section>
+    </div>
 </body>
 
 </html>
