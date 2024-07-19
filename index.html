@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Word Puzzle Helper</title>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-    <script src="script.js" defer></script>
+    <script src="script.js"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -68,8 +68,11 @@
             <div x-data="airtimeCalculator()" class="box">
                 <textarea x-model="usageString" placeholder="Enter projected usage (e.g., call,call,data,sms)"
                     class="textarea"></textarea><br>
-                <input x-model.number="availableAirtime" type="number" placeholder="Enter available airtime"
+                <label>
+                    <span>Enter Available Airtime</span>
+                    <input x-model.number="availableAirtime" type="number" placeholder="Enter available airtime"
                     class="input" />
+                </label>
                 <button @click="calculateRemainingAirtime()" class="button">Calculate Remaining Airtime</button>
                 <p x-text="remainingAirtime" class="result"></p>
             </div>
@@ -80,11 +83,11 @@
             <h2>Word Puzzle Helper</h2>
             <div x-data="wordPuzzleHelper()" class="box">
                 <textarea x-model="sentence" placeholder="Enter your sentence here" class="textarea"></textarea><br>
-                <button @click="findLongestWord()" class="button">Find Longest Word</button>
                 <button @click="findShortestWord()" class="button">Find Shortest Word</button>
+                <button @click="findLongestWord()" class="button">Find Longest Word</button>
                 <button @click="calculateWordLengths()" class="button">Calculate Total Length</button>
-                <p x-text="'Longest Word: ' + longestWord" class="result"></p>
                 <p x-text="'Shortest Word: ' + shortestWord" class="result"></p>
+                <p x-text="'Longest Word: ' + longestWord" class="result"></p>
                 <p x-text="'Total Length of Words: ' + totalLength" class="result"></p>
             </div>
         </section>
